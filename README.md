@@ -32,8 +32,8 @@ user
 
 4. Inject [Config](./pkg/config/db_config.go)
     + 配置在 `goft.Config` 中完成 IoC 容器的配置声明与注入
-    + 在 Controller 配置中使用 tag `inject:""` 获取注入配置 [controllers/User.go demo #L12](./pkg/controllers/user.go): 1. 字段名字随意但必须公开，2. 类型必须 main.Config
+    + 在 Controller 配置中使用 tag `inject:""` 获取注入配置 [controllers/User.go demo #L12](./pkg/controllers/user.go#L12): 1. 字段名字随意但必须公开，2. 类型必须 main.Config
 
-5. Inject [Db Config and Adapter #42 ](./pkg/config/db_config.go)
+5. Inject [Db Config and Adapter #42 ](./pkg/config/db_config.go#L42)
     + [db] 如果要支持 `goft.SimpleQuery` 那么 db 需要支持方法签名 `func (db *driver.DB) DB() *sql.DB)`
     + [db] 否则就需要自己构造 **Adapter** 实现上述签名。
