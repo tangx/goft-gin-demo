@@ -7,4 +7,4 @@ demo 的目录结构将尽量与 https://github.com/golang-standards/project-lay
 
 0. [Config file](./cmd/demo/application.yaml)
 1. Goft [Initial and Launch](./cmd/demo/main.go)
-2. Controller [Route and Handler](./pkg/controllers/IndexController.go)
+2. Controller [Route and Handler](./pkg/controllers/index.go)
