@@ -10,7 +10,7 @@ func main() {
 	s := goft.Ignite()
 
 	//挂载控制器 group v1
-	s.Mount("/demo/v1", controllers.NewIndexController())
+	s.Mount("/demo/v1", controllers.NewIndex())
 
 	// 挂载控制器 group v2 ok
 	// s.Mount("/demo/v2", controllers.NewIndexController())
