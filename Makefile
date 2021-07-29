@@ -1,6 +1,6 @@
 
 
-MAIN_ROOT ?= cmd/webserver
+MAIN_ROOT ?= cmd/demo
 
 up:
 	cd $(MAIN_ROOT) && go run .
