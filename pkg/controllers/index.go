@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/shenyisyn/goft-gin/goft"
+	"github.com/tangx/goft-gin-demo/pkg/middlewares"
 )
 
 type Index struct{}
@@ -18,11 +19,17 @@ func (i *Index) Name() string {
 }
 
 // Build 1. 注册路由地址 2. 为路由绑定 Handler
-//	1. https://github.com/shenyisyn/goft-gin/blob/3e3f783147166ca2c3a7c14ac9aecce46bdeeaed/goft/Goft.go#L128
-// 	2. https://github.com/shenyisyn/goft-gin/blob/3e3f783147166ca2c3a7c14ac9aecce46bdeeaed/goft/Goft.go#L61
+//	1. https://github.com/shenyisyn/goft-gin/blob/v0.5.2/goft/Goft.go#L128
+// 	2. https://github.com/shenyisyn/goft-gin/blob/v0.5.2/goft/Goft.go#L61
 func (i *Index) Build(goft *goft.Goft) {
 	goft.Handle("GET", "/index/string", i.handlerIndex)
+
 	goft.Handle("GET", "/index/json", i.handlerIndexJson)
+
+	goft.HandleWithFairing("GET", "/index/fairing",
+		i.handlerIndex,
+		middlewares.NewPostfix("local middleware"), // 直接生命
+	)
 }
 
 // handlerIndex  类似 gin.HandlerFunc, 请求处理

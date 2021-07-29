@@ -36,12 +36,9 @@ func (tc *TokenCheck) OnRequest(c *gin.Context) error {
 // OnResponse 为了满足 Fairing Middleware 接口
 // 	https://github.com/shenyisyn/goft-gin/blob/v0.5.2/goft/FairingHandler.go#L41
 func (tc *TokenCheck) OnResponse(result interface{}) (interface{}, error) {
-
-	// 由于 result 是 interface{}, 为了要对其进行处理， 需要进行断言获取真实类型。
 	if r, ok := result.(string); ok {
-		r = fmt.Sprintf("%s - by middleware", r)
+		r = fmt.Sprintf("%s - by token-check", r)
 		return r, nil
 	}
-
 	return result, nil
 }

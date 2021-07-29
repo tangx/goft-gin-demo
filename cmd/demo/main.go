@@ -11,7 +11,14 @@ func main() {
 	s := goft.Ignite()
 
 	// 2. 注册全局中间件 middleware
-	s.Attach(middlewares.NewTokenCheck())
+	// 	2.1. 可以注册多个
+	// 	2.2. 按照注册顺序执行
+	// 	2.3. 相同中间件可以重复注册，并且都会执行
+	s.Attach(
+		middlewares.NewTokenCheck(),
+		middlewares.NewPostfix("global middleware"),
+		middlewares.NewTokenCheck(), // 可以重复
+	)
 
 	// 3. 挂载路由
 	//	3.1. 控制器 group v1
