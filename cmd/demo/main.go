@@ -2,13 +2,17 @@ package main
 
 import (
 	"github.com/shenyisyn/goft-gin/goft"
+	"github.com/tangx/goft-gin-demo/pkg/config"
 	"github.com/tangx/goft-gin-demo/pkg/controllers"
 	"github.com/tangx/goft-gin-demo/pkg/middlewares"
 )
 
 func main() {
 	// 1. 初始化脚手架
-	s := goft.Ignite()
+	s := goft.Ignite().Config(
+		config.NewMysqlConfig(),
+	)
+	// 1.1. 初始化配置
 
 	// 2. 注册全局中间件 middleware
 	// 	2.1. 可以注册多个
@@ -22,7 +26,10 @@ func main() {
 
 	// 3. 挂载路由
 	//	3.1. 控制器 group v1
-	s.Mount("/demo/v1", controllers.NewIndex())
+	s.Mount("/demo/v1",
+		controllers.NewIndex(),
+		&controllers.User{},
+	)
 	// 	3.2. 控制器 group v2
 	s.Mount("/demo/v2", controllers.NewIndex())
 
