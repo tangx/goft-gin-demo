@@ -11,6 +11,7 @@ func main() {
 	// 1. 初始化脚手架
 	s := goft.Ignite().Config(
 		config.NewMysqlConfig(),
+		config.NewServicesConfig(),
 	)
 	// 1.1. 初始化配置
 
@@ -29,6 +30,7 @@ func main() {
 	s.Mount("/demo/v1",
 		controllers.NewIndex(),
 		&controllers.User{},
+		&controllers.UserInfo{},
 	)
 	// 	3.2. 控制器 group v2
 	s.Mount("/demo/v2", controllers.NewIndex())

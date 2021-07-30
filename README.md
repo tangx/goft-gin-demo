@@ -37,3 +37,11 @@ user
 5. Inject [Db Config and Adapter #42 ](./pkg/config/db_config.go#L42)
     + [db] 如果要支持 `goft.SimpleQuery / goft.Query` 那么 db 需要支持方法签名 `func (db *driver.DB) DB() *sql.DB)`
     + [db] 否则就需要自己构造 **Adapter** 实现上述签名。
+
+> 注意: **数据库驱动适配器** 详细说明和demo代码需要到分支 `archive/database-adapter` 查看。 master 可能已经删除了。
+
+6. `API(接口定义) -> Service(业务逻辑处理) -> DAO(数据操作)`:
+    + [config]
+        1. 在 `config.ServiceConfig` 中 **初始化** `dao / service 实例` 等模式 [pkg/config/service.go](./pkg/config/service.go)
+        2. 并在初始化时，注入到 **goft IoC** 中 [cmd/demo/main.go](./cmd/demo/main.go#L14)
+        3. 在 `services.UserInfo` / `daos.UserInfo` 中引入注入 [pkg/services/userinfo.go](./pkg/services/userinfo.go#L11)
