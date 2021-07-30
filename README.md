@@ -45,3 +45,7 @@ user
         1. 在 `config.ServiceConfig` 中 **初始化** `dao / service 实例` 等模式 [pkg/config/service.go](./pkg/config/service.go)
         2. 并在初始化时，注入到 **goft IoC** 中 [cmd/demo/main.go](./cmd/demo/main.go#L14)
         3. 在 `services.UserInfo` / `daos.UserInfo` 中引入注入 [pkg/services/userinfo.go](./pkg/services/userinfo.go#L11)
+
+7. [WebSocket Support](./pkg/controllers/ws.go#L36):
+    + gin 框架本身已支持 websocket, 结合 [gorilla/websocket](github.com/gorilla/websocket) 就可以实现。 实现参考代码 [gin websocket 一对一聊天](https://segmentfault.com/a/1190000023581108)
+    + websocket 测试网站: http://www.easyswoole.com/wstool.html

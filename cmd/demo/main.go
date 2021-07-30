@@ -31,9 +31,10 @@ func main() {
 		controllers.NewIndex(),
 		&controllers.User{},
 		&controllers.UserInfo{},
+		controllers.NewWebSocket(),
 	)
 	// 	3.2. 控制器 group v2
-	s.Mount("/demo/v2", controllers.NewIndex())
+	// s.Mount("/demo/v2", controllers.NewIndex())
 
 	// 启动
 	s.Launch() //启动 默认8080
